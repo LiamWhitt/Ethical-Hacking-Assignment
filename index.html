@@ -15,29 +15,59 @@
                 font-family: arial;
                 color: #202020;
                 line-height: 45px;
-                padding: 0 10px;
+                padding: 0 5px;
             }
 
+            ul li {
+
+                list-style: none;
+                display: inline-block;
+                float: left;
+
+            }
+
+            .logo {
+                float: right;
+                margin-left: 0;
+                padding: 0;
+            }
+
+            .img1 {
+                max-width: 100%;
+                height: auto;
+            }
+
+
             h1 {
-                font-size: 14px;
+                font-size: 20px;
+                text-align: center;
+                font-family: Poppins;
+                color: black;
+            }
+
+            .author {
+                font-size: 9px;
+                font-family: Poppins;
+                font-style: italic;
+                color: #1e1e1e;
+            }
+
+            h2 {
+                font-size: 10px;
                 text-align: center;
                 font-family: Poppins;
                 color: black;
             }
 
             p {
-                font-size: 12px;
+                font-size: 8px;
                 font-family: Poppins;
                 color: #1e1e1e;
             }
 
             .container {
+                margin-top: 10px;
                 padding: 15px;
-                background-color: #f1f1f1;
-                margin: auto;
-                margin-top: 20px;
-                width: 80%;
-                height: 1000px;
             }
 
         }
@@ -49,7 +79,7 @@
 <body>
     <nav>
         <ul>
-            <img src="assets\logo.png" width="150" height="35" style="margin-left: 40px;"> 
+            <img src="assets\logo.png" width="70" height="70" class="logo"> 
             <li><a href="portfolio.html">Portfolio</a></li>
             <li><a href="about.html">About me</a></li>
             <li><a href="contact.html">Contact</a></li>  
@@ -59,11 +89,10 @@
     <div class="container">
         <div class="section" id="section-1">
             <h1>What is SQL injection? Definition, demonstration, and why you must know</h1>
-                <p style="font-size: 14px; font-style: italic;"><br>Liam Whittaker - Mar 3 - 10 minute read</p>
-        
+                <p class="author"><br>Liam Whittaker - Mar 3 - 10 minute read</p>
                 <p><br>This blog will go in depth on ‘XSS’ or cross-site scripting, as well as: how it works, its impact, the potential causes, how it can be resolved and how it can be tested for. However, before I explain each section you will need to understand what the vulnerability actually is.
                 <br></p>
-                <img src="assets\sql-6060942_640.png" width="640" height="320">
+                <img src="assets\sql-6060942_640.png" class="img1">
         <div class="section" id="section-2">
             <h2>How does it work?</h2>
         </div>
