@@ -23,6 +23,19 @@ nav {
     box-shadow: 0px 12px 12px #b4b4b4e3;
 }
 
+dt {
+    font-family: Poppins;
+    color: #1e1e1e;
+    font-weight: bold;
+}
+
+dd {
+    font-family: Poppins;
+    color: #1e1e1e;
+    font-style: italic;
+}
+
+
 ul {
 
 
@@ -51,8 +64,8 @@ ul li {
 ul li a {
     text-decoration: none;
     font-size: 18px;
-    font-weight: bold;
-    font-family: arial;
+    font-weight: 400;
+    font-family: Poppins;
     color: #202020;
     line-height: 70px;
     padding: 0 35px;
@@ -93,6 +106,27 @@ h2 {
     color: black;
 
 }
+
+h3 {
+    text-align: left;
+    font-weight: 450;
+    font-family: Poppins;
+    font-size: 20px;
+    color: black;
+}
+
+.keyword {
+    font-family: Poppins;
+    color: #00b8e6
+
+}
+
+code {
+    background-color: #eee;
+    border-radius: 3px;
+    font-family: courier, monospace;
+    padding: 0 3px;
+  }
 
 p {
     font-family: Poppins;
