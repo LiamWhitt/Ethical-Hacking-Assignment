@@ -1,11 +1,10 @@
 * {
-    
     margin: 0;
     padding: 0;
 }
 
 body {
-    background-color: #eeeeee;
+    background-color: #FFFFFF;
     margin: 0;
     padding: 0;
 
@@ -19,9 +18,9 @@ nav {
     width: 100%;
     box-sizing: border-box;
     height: 90px;
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(72, 187, 107);
     padding: 10px;
-    box-shadow: 0px 12px 12px #e0e0e0c2;
+    box-shadow: 0px 12px 12px #b4b4b4e3;
 }
 
 ul {
@@ -45,6 +44,7 @@ ul li {
     width: 1000px;
     max-width: 100%;
     height: auto;
+    background-color: #00bbff4f;
 }
 
 
@@ -60,21 +60,20 @@ ul li a {
 }
 
 .container {
-
-    padding: 50px;
-    background-color: #ffffff;
-    margin-top: 35px;
-    max-width: 700px;
+    background-color: #FFFFFF;
+    margin-top: 30px;
+    max-width: 600px;
     margin-left: auto;
     margin-right: auto;
-    height: 300vh;
+    height: 500vh;
 
 
 }
 
 h1 {
     text-align: left;
-    font-size: 48px;
+    font-size: 30px;
+    font-weight: 600;
     font-family: Poppins;
     color: black;
 
@@ -89,6 +88,7 @@ h1 {
 
 h2 {
     text-align: left;
+    font-weight: 450;
     font-family: Poppins;
     color: black;
 
