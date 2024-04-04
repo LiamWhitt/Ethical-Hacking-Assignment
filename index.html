@@ -7,6 +7,54 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
+
+        @media only screen and (min-width: 2560px) {
+
+            .container {
+                max-width: 1100px;
+            }
+
+            nav {
+                width: 100%;
+                box-sizing: border-box;
+                height: 4.5vw;
+                background-color: rgb(72, 187, 107);
+                padding: 10px;
+                box-shadow: 0px 12px 12px #b4b4b4e3;
+            }
+
+            ul li a {
+                font-size: 2em;
+                line-height: 2.5em;
+
+            }
+
+            .logo {
+
+                width: 6em;
+                height: 6em;
+
+            }
+
+
+            h1 {
+                font-size: 3.5em;
+            }
+
+            h2 {
+                font-size: 3em;
+            }
+
+            h3 {
+                font-size: 2.5em;
+            }
+
+            dt, dd, p, .author {
+                font-size: 1.5em;
+            }
+            
+
+        }
         @media only screen and (max-width: 700px) {
 
             ul li a {
@@ -54,21 +102,21 @@
             }
 
             h2 {
-                font-size: 4vw;
+                font-size: 6vw;
                 text-align: left;
                 font-family: Poppins;
                 color: black;
             }
 
             h3 {
-                font-size: 3.5vw;
+                font-size: 5vw;
                 text-align: left;
                 font-family: Poppins;
                 color: black;
             }
 
             p, dt, dd, code {
-                font-size: 3vw;
+                font-size: 4vw;
                 font-family: Poppins;
                 color: #1e1e1e;
             }
@@ -76,6 +124,7 @@
             .container {
                 margin-top: 25px;
                 padding: 10px;
+                max-width: 600px;
             }
 
         }
@@ -94,7 +143,6 @@
         </ul>
     </nav>
     <div class="container">
-        <div class="section" id="section-1">
             <h1>What is SQL injection? Definition, demonstration, and why you must know</h1>
                 <p class="author"><br>Liam Whittaker | Mar 3rd | 10 minute read</p>
                 <br>
@@ -103,7 +151,6 @@
                     and how it works, its impact, the potential causes, how it can be resolved etc, etc. I will need to explain what it actually is in the first place.
                 </p>
                 <br>
-        <div class="section" id="section-1">
             <h2>What even is it?</h2>
             <p><br>There are a wide range of vulnerabilities that SQLi offers, such as:</p><br>
             <dl>
@@ -121,9 +168,7 @@
                "A web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database." This can allow an attacker to gain
                access to unauthorized user data, they also may be able to change said data or even delete it. If this were to happen it could cost a company a lot of money, not only
                legally but internally too as an attack could lead to a compromise to a server.</p><br>
-        </div>
 
-        <div class="section" id="section-2">
             <h2>How does it even work?</h2><br>
             <h3>Retrieving hidden data:</h3>
             <p>Imagine your favourite (non-existent) start-up band has a ticket and merchandise website with the following URL:<br>
@@ -151,12 +196,10 @@
             merchandise ready for the upcoming tour.</p><br>
 
             
-        </div>
-        <div class="section" id="section-3">
             <h2>What impact does it have?</h2>
-        </div>
-        <div class="section" id="section-4">
+
             <h2>How can we test for it?</h2>
+
         </div>
 </body>
 
