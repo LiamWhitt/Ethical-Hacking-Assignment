@@ -7,13 +7,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        @media only screen and (max-width: 650px) {
+        @media only screen and (max-width: 700px) {
 
             ul li a {
                 text-decoration: none;
                 font-size: 5vw;
-                font-weight: bold;
-                font-family: arial;
+                font-weight: 400;
+                font-family: Poppins;
                 color: #202020;
                 line-height: 35px;
                 padding: 0 5px
@@ -55,12 +55,19 @@
 
             h2 {
                 font-size: 4vw;
-                text-align: center;
+                text-align: left;
                 font-family: Poppins;
                 color: black;
             }
 
-            p {
+            h3 {
+                font-size: 3.5vw;
+                text-align: left;
+                font-family: Poppins;
+                color: black;
+            }
+
+            p, dt, dd, code {
                 font-size: 3vw;
                 font-family: Poppins;
                 color: #1e1e1e;
@@ -92,14 +99,58 @@
                 <p class="author"><br>Liam Whittaker | Mar 3rd | 10 minute read</p>
                 <br>
                 <img src="assets\sql-6060942_640.png" class="img1">
-                <p><br>Before I delve deep into ‘SQL Injecting’ and how it works, its impact, the potential causes, how it can be resolved and how it can be tested for etc, etc. I will need to explain what it actually is in the first place.
+                <p><br>Whether you are aware of <span class="keyword">SQLi (SQL Injection)</span> or not, this blog post will go over everything you need to know. But before I delve deep into ‘SQL Injecting’
+                    and how it works, its impact, the potential causes, how it can be resolved etc, etc. I will need to explain what it actually is in the first place.
                 </p>
                 <br>
         <div class="section" id="section-1">
             <h2>What even is it?</h2>
+            <p><br>There are a wide range of vulnerabilities that SQLi offers, such as:</p><br>
+            <dl>
+                <dt>Retrieving hidden data:</dt><br>
+                <dd>- Manipulating SQL queries into giving hidden data.</dd><br>
+                
+                <dt>Subverting application logic:</dt><br>
+                <dd>- Injecting code which can change how a site’s code processes input or data.</dd><br>
+                
+                <dt>Retrieving data from other database tables:</dt><br>
+                <dd>- Injecting SQL code to gather data from a separate table and add it to the original query output.</dd><br>
+            </dl> 
+
+            <p>I will explain how these three main principles work but for a more general definition the creators of Burpe Suite A.K.A Portswigger (2024) define SQLi as:
+               "A web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database." This can allow an attacker to gain
+               access to unauthorized user data, they also may be able to change said data or even delete it. If this were to happen it could cost a company a lot of money, not only
+               legally but internally too as an attack could lead to a compromise to a server.</p><br>
         </div>
+
         <div class="section" id="section-2">
-            <h2>How does it even work?</h2>
+            <h2>How does it even work?</h2><br>
+            <h3>Retrieving hidden data:</h3>
+            <p>Imagine your favourite (non-existent) start-up band has a ticket and merchandise website with the following URL:<br>
+            <code>https://good-rock-band-bad-website.co.uk/merch?category=apparel</code>
+            </p><br>
+
+            <p>this URL contains all the clothing merchandise for your band.</p>
+
+            <p>Unfortunately, they for some reason have their home-made website running off a raspberry PI in their grandparent’s basement, which happens to be incredibly insecure and
+            the site makes this SQL query to retrieve the data:</p><br>
+
+            <p><code>SELECT * FROM merch WHERE category = 'apparel' AND released = 1</code></p><br>
+
+            <p>It wants all the details <code>(*)</code> from the <code>merch</code> table, where the <code>category</code> is <code>apparel</code> and <code>released</code> = <code>1</code>
+            (true). We see that the site is using “released = 1” to only show released merchandise. However, what if we want the <i>unreleased</i> merchandise for the upcoming tour?
+            Since the site has such poor security practises and is completely open to SQLi we can add a comment tag to the end of apparel:</p><br>
+
+            <p><code>https://good-rock-band-bad-website.co.uk/merch?category=apparel’--</code></p><br>
+
+            <p>Since the query takes the data from the URL and appends it straight into the request it now looks more like this:</p><br>
+
+            <p><code>SELECT * FROM merch WHERE category = 'apparel’--' AND released = 1</code></p><br>
+
+            <p>Since it has appended a SQL comment tag it basically rendered the next part of code useless, thus removing the restriction so the site now shows the unreleased
+            merchandise ready for the upcoming tour.</p><br>
+
+            
         </div>
         <div class="section" id="section-3">
             <h2>What impact does it have?</h2>
