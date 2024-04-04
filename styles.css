@@ -24,12 +24,14 @@ nav {
 }
 
 dt {
+    font-size: 1em;
     font-family: Poppins;
     color: #1e1e1e;
     font-weight: bold;
 }
 
 dd {
+    font-size: 1em;
     font-family: Poppins;
     color: #1e1e1e;
     font-style: italic;
@@ -63,7 +65,7 @@ ul li {
 
 ul li a {
     text-decoration: none;
-    font-size: 18px;
+    font-size: 1.5em;
     font-weight: 400;
     font-family: Poppins;
     color: #202020;
@@ -75,7 +77,7 @@ ul li a {
 .container {
     background-color: #FFFFFF;
     margin-top: 30px;
-    max-width: 600px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
     height: 500vh;
@@ -85,7 +87,7 @@ ul li a {
 
 h1 {
     text-align: left;
-    font-size: 30px;
+    font-size: 2.5em;
     font-weight: 600;
     font-family: Poppins;
     color: black;
@@ -93,13 +95,14 @@ h1 {
 }
 
 .author {
-    font-size: 14px;
+    font-size: 1em;
     font-family: Poppins;
     font-style: italic;
     color: #1e1e1e;
 }
 
 h2 {
+    font-size: 2em;
     text-align: left;
     font-weight: 450;
     font-family: Poppins;
@@ -108,6 +111,7 @@ h2 {
 }
 
 h3 {
+    font-size: 1.5em;
     text-align: left;
     font-weight: 450;
     font-family: Poppins;
@@ -117,7 +121,7 @@ h3 {
 
 .keyword {
     font-family: Poppins;
-    color: #00b8e6
+    color: #00b8e6;
 
 }
 
@@ -129,6 +133,7 @@ code {
   }
 
 p {
+    font-size: 1em;
     font-family: Poppins;
     color: #1e1e1e
 
