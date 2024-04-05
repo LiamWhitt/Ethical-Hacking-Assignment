@@ -6,7 +6,50 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+
+    <script>
+        function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+        }
+
+        window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        } 
+        </script>
+
     <style>
+
+
+        @media only screen and (min-width: 701px) {
+
+            .dropbtn {
+                display: none;
+            }
+            .dropbtn:hover, .dropbtn:focus {
+                display: none;
+            }
+            .dropdown {
+                display: none;
+            }
+            .dropdown-content {
+                display: none;
+            }
+            .dropdown-content a {
+                display: none;
+            }
+            .dropdown-content a:hover {display: none;}
+            .show {display: none;} 
+
+        }
 
         @media only screen and (min-width: 2560px) {
 
@@ -18,14 +61,14 @@
                 height: 120px;
             }
 
-            ul li a {
-                line-height: 95px;
+            .github {
+                margin-top: 0.5em;
+
             }
 
             .logo {
                 width: 6em;
                 height: 6em;
-
             }
             
             h1 {
@@ -48,28 +91,59 @@
         }
         @media only screen and (max-width: 700px) {
 
-            ul li a {
+            ul {
+                display:none;
+            }
+
+            .mobileLogo {
+                content:url(assets/logoMobile.png);
+                width: 70px;
+                height: 70px;
+                float: right;
+            }
+
+             /* Dropdown Button */
+                .dropbtn {
+                margin-top: 0.5em;
+                width: 25px;
+                height: 25px;
+                border: none;
+                cursor: pointer;
+                }
+   
+                /* Dropdown Content (Hidden by Default) */
+                .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f1f1f1;
+                min-width: 160px;
+                border: 1px black;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                }
+
+                /* Links inside the dropdown */
+                .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
                 text-decoration: none;
-                font-size: 5vw;
-                font-weight: 400;
                 font-family: Poppins;
-                color: #202020;
-                line-height: 35px;
-                padding: 0 5px
-            }
+                border-color: black;
+                border-style: groove;
+                border-width: 2px;
+                display: block;
+                }
 
-            ul li {
+                /* Change color of dropdown links on hover */
+                .dropdown-content a:hover {background-color: #ddd;}
 
-                list-style: none;
-                display: inline-block;
-                float: left;
-
-            }
+                /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+                .show {display:block;} 
 
             .logo {
                 float: right;
                 margin-right: 25px;
-                padding: 0;
+
             }
 
             .img1 {
@@ -125,19 +199,29 @@
 
 <body>
     <nav>
+        <div class = "mobileLogo"></div>
         <ul>
             <img src="assets\logo.png" width="70" height="70" class="logo"> 
-            <li><a href="portfolio.html">Portfolio</a></li>
-            <li><a href="about.html">About me</a></li>
-            <li><a href="contact.html">Contact</a></li>  
-            <li><a href="index.html">Home</a></li>
+            <li><a href="https://github.com/LiamWhitt"><img src="assets\github-mark-c791e9551fe4\github-mark\github-mark.svg" class="github"></a></li>
+            <li><a href="about.html" class = "aboutList">About me </a></li>
+            <li><a href="contact.html" class = "contactList">Contact</a></li>  
         </ul>
+        <div class="dropdown">
+            <img onclick="myFunction()" class="dropbtn" src="assets/dropdown.png"></img>
+            <div id="myDropdown" class="dropdown-content">
+              <a href="https://github.com/LiamWhitt">Github</a>
+              <a href="#">About me</a>
+              <a href="#">Contact</a>
+            </div>
+        </div> 
     </nav>
+
     <div class="container">
             <h1>What is SQL injection? Definition, demonstration, and why you must know</h1>
                 <p class="author"><br>Liam Whittaker | Mar 3rd | 10 minute read</p>
                 <br>
                 <img src="assets\sql-6060942_640.png" class="img1">
+
                 <p><br>Whether you are aware of <span class="keyword">SQLi (SQL Injection)</span> or not, this blog post will go over everything you need to know. But before I delve deep into ‘SQL Injecting’
                     and how it works, its impact, the potential causes, how it can be resolved etc, etc. I will need to explain what it actually is in the first place.
                 </p>
