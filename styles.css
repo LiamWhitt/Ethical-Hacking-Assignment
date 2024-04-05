@@ -37,12 +37,6 @@ dd {
     font-style: italic;
 }
 
-
-ul {
-
-
-}
-
 ul li {
     
     list-style: none;
@@ -52,9 +46,9 @@ ul li {
 }
 
 .logo {
-    min-width: 4em;
-    min-height: 4em;
     margin-left: 40px;
+    width: 70px; 
+    height: 70px;
 }
 
 .img1 {
@@ -75,6 +69,12 @@ ul li a {
     color: #202020;
     line-height: 65px;
     padding: 0 35px;
+
+}
+
+.github {
+    width: 70px;
+    height: 70px;
 
 }
 
