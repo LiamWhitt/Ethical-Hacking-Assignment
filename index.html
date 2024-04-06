@@ -10,20 +10,27 @@
     <script>
         function myFunction() {
         document.getElementById("myDropdown").classList.toggle("show");
+        document.getElementById("btn").src = "assets/dropdownX.png";
+        if (!document.getElementById("myDropdown").classList.contains('show'))
+            document.getElementById("btn").src = "assets/dropdown.png";
         }
-
         window.onclick = function(event) {
-        if (!event.target.matches('.dropbtn')) {
-            var dropdowns = document.getElementsByClassName("dropdown-content");
-            var i;
+            if (!event.target.matches('.dropbtn')) {
+                document.getElementById("btn").src = "assets/dropdown.png";
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+            
             for (i = 0; i < dropdowns.length; i++) {
                 var openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
+                    
                     }
                 }
             }
         } 
+        
+
         </script>
 
     <style>
@@ -105,8 +112,8 @@
              /* Dropdown Button */
                 .dropbtn {
                 margin-top: 0.5em;
-                width: 25px;
-                height: 25px;
+                width: 50px;
+                height: 50px;
                 border: none;
                 cursor: pointer;
                 }
@@ -207,7 +214,7 @@
             <li><a href="contact.html" class = "contactList">Contact</a></li>  
         </ul>
         <div class="dropdown">
-            <img onclick="myFunction()" class="dropbtn" src="assets/dropdown.png"></img>
+            <img id = "btn" onclick="myFunction()" class="dropbtn" src="assets/dropdown.png"></img>
             <div id="myDropdown" class="dropdown-content">
               <a href="https://github.com/LiamWhitt">Github</a>
               <a href="#">About me</a>
