@@ -52,11 +52,20 @@ ul li {
     height: 70px;
 }
 
-.img1 {
+.img {
     width: 1000px;
     max-width: 100%;
     height: auto;
     background-color: #00bbff4f;
+}
+
+.figure {
+    border-style: solid;
+    border-color: #3af3293f;
+    border-width: 5px;
+    width: 1000px;
+    max-width: 100%;
+    height: auto;
 }
 
 
@@ -80,6 +89,7 @@ ul li a {
 }
 
 .container {
+    font-family: Poppins;
     background-color: #FFFFFF;
     margin-top: 30px;
     max-width: 700px;
@@ -136,6 +146,26 @@ code {
     font-family: courier, monospace;
     padding: 0 3px;
   }
+
+.references {
+    padding: 1.5em;
+    background-color: #3af3293f;
+
+}
+
+.tip {
+    background-color: #b0ffb1;
+    font-style: italic;
+    padding: 1em;
+    border-style: solid;
+    border-color: #3af3293f;
+    border-width: 5px;
+}
+
+.caption {
+    font-size: 0.9em;
+    font-style: italic;
+}
 
 p {
     font-size: 1em;
