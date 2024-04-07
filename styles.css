@@ -25,14 +25,14 @@ nav {
 }
 
 dt {
-    font-size: 1em;
+    font-size: 1.2em;
     font-family: Poppins;
     color: #1e1e1e;
     font-weight: bold;
 }
 
 dd {
-    font-size: 1em;
+    font-size: 1.2em;
     font-family: Poppins;
     color: #1e1e1e;
     font-style: italic;
@@ -63,7 +63,7 @@ ul li {
     border-style: solid;
     border-color: #3af3293f;
     border-width: 5px;
-    width: 1000px;
+    width: 990px;
     max-width: 100%;
     height: auto;
 }
@@ -73,7 +73,7 @@ ul li a {
     text-align: center;
     width: 100%;
     text-decoration: none;
-    font-size: 1.5em;
+    font-size: 1.7em;
     font-weight: 400;
     font-family: Poppins;
     color: #202020;
@@ -109,7 +109,7 @@ h1 {
 
 }
 
-.author {
+.author, .figcaption {
     font-size: 1em;
     font-family: Poppins;
     font-style: italic;
@@ -117,7 +117,7 @@ h1 {
 }
 
 h2 {
-    font-size: 2em;
+    font-size: 2.2em;
     text-align: left;
     font-weight: 450;
     font-family: Poppins;
@@ -126,7 +126,7 @@ h2 {
 }
 
 h3 {
-    font-size: 1.5em;
+    font-size: 1.7em;
     text-align: left;
     font-weight: 450;
     font-family: Poppins;
@@ -146,10 +146,15 @@ code {
     font-family: courier, monospace;
     padding: 0 3px;
   }
+  
 
 .references {
-    padding: 1.5em;
+    padding: 40px;
     background-color: #3af3293f;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
 
 }
 
@@ -162,13 +167,8 @@ code {
     border-width: 5px;
 }
 
-.caption {
-    font-size: 0.9em;
-    font-style: italic;
-}
-
-p {
-    font-size: 1em;
+p, ol {
+    font-size: 1.2em;
     font-family: Poppins;
     color: #1e1e1e
 
