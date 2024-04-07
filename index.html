@@ -112,8 +112,8 @@
              /* Dropdown Button */
                 .dropbtn {
                 margin-top: 0.5em;
-                width: 50px;
-                height: 50px;
+                width: 25px;
+                height: 25px;
                 border: none;
                 cursor: pointer;
                 }
@@ -227,14 +227,14 @@
             <h1>What is SQL injection? Definition, demonstration, and why you must know</h1>
                 <p class="author"><br>Liam Whittaker | Mar 3rd | 10 minute read</p>
                 <br>
-                <img src="assets\sql-6060942_640.png" class="img1">
+                <img src="assets\sql-6060942_640.png" class="img">
 
                 <p><br>Whether you are aware of <span class="keyword">SQLi (SQL Injection)</span> or not, this blog post will go over everything you need to know. But before I delve deep into ‘SQL Injecting’
                     and how it works, its impact, the potential causes, how it can be resolved etc, etc. I will need to explain what it actually is in the first place.
                 </p>
                 <br>
             <h2>What even is it?</h2>
-            <p><br>There are a wide range of vulnerabilities that SQLi offers, such as:</p><br>
+            <p>There are a wide range of vulnerabilities that SQLi offers, such as:</p><br>
             <dl>
                 <dt>Retrieving hidden data:</dt><br>
                 <dd>- Manipulating SQL queries into giving hidden data.</dd><br>
@@ -248,13 +248,17 @@
 
             <p>I will explain how these three main principles work but for a more general definition the creators of Burpe Suite A.K.A Portswigger (2024) define SQLi as:
                "A web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database." This can allow an attacker to gain
-               access to unauthorized user data, they also may be able to change said data or even delete it. If this were to happen it could cost a company a lot of money, not only
-               legally but internally too as an attack could lead to a compromise to a server.</p><br>
+               access to unauthorized user data, they also may be able to change said data or even delete it.</p><br>
+
+               <p>If this were to happen it could cost a company a lot of money not only financially but legally too, EC-Council (2024) states an example of this by saying:</p><br> 
+               <p><i>“An attacker can use SQL Injection in a financial application to make some transactions void, change balances, or move money from the user’s account to another account.”</i></p><br>
+                <p>SQLi can be deadly as SQL allows the possibility of the output data to be chosen from the database, and data to be modified in different ways such as inserting it into a new column allowing it to be retrieved.</p><br>
 
             <h2>How does it even work?</h2><br>
+            
             <h3>Retrieving hidden data:</h3>
-            <p>Imagine your favourite (non-existent) start-up band has a ticket and merchandise website with the following URL:<br>
-            <code>https://good-rock-band-bad-website.co.uk/merch?category=apparel</code>
+            <p>Imagine your favourite (non-existent) start-up band has a ticket and merchandise website with the following URL:</p><br>
+            <p><code>https://good-rock-band-bad-website.co.uk/merch?category=apparel</code></p>
             </p><br>
 
             <p>this URL contains all the clothing merchandise for your band.</p>
@@ -274,13 +278,66 @@
 
             <p><code>SELECT * FROM merch WHERE category = 'apparel’--' AND released = 1</code></p><br>
 
-            <p>Since it has appended a SQL comment tag it basically rendered the next part of code useless, thus removing the restriction so the site now shows the unreleased
+            <p>As it has appended a SQL comment tag it basically rendered the next part of code useless, thus removing the restriction so the site now shows the unreleased
             merchandise ready for the upcoming tour.</p><br>
 
+            <h3>Subverting application logic:</h3><br>
+
+            <div class = tip>
+            <p><b>TIP :</b> you can use the Portswigger (2024) “SQL Injection Cheat Sheet” where you can see a variety of different syntax’s you would use in an SQLi attack:</p><br>
+                
+            <p>https://portswigger.net/web-security/sql-injection/cheat-sheet</p>
+            </div><br>
+
+            <p>We will continue to use the SQL comment tag as shown in the ‘Cheat Sheet’ and the last example but in a different scenario.</p><br>
+            <p></p>
+
+            <p>Pretend that the non-existent “rock band” we saw earlier also has a login page to show your purchased tickets,
+               this time it gives the check using the following query:</p><br>
+
+            <p><code>SELECT * FROM users WHERE username = 'Tyler' AND password = 'Cl4ncy'</code></p><br>
+
+            <p>The example shown above is the credential check for “Tyler”, however since the website was developed by a band member to save money
+               (who also knows nothing about our secret SQLi trick), we can not only login as “Tyler” but also as anyone.</p><br>
+
+            <p>We can do this by adding a comment tag (--) at the end of our (or anyone’s) username to login to that account without the need of a password:</p><br>
+
+            <p><code>SELECT * FROM users WHERE username = 'Tyler'--' AND password = ''</code></p><br>
+
+            <p>Just like the last example it removes the last part of the code that checks for the password, allowing us to freely login as Tyler
+               or even an administrator without prompting a password.</p><br>
+
+            <p>We will see this same logic in the demonstration I will show later, showing how you can actually perform this attack italics <i>(legally).</i></p><br>
             
+            <h3>Retrieving data from other database tables:</h3><br>
+
+            <p>This can also be commonly called an <span class = keyword>SQLi UNION attack.</span></p><br>
+
+            <p>As I summarised before we are basically selecting other data and adding it back to the original query. This can be done with the UNION command.
+               Portswigger (2024) give the example shown in figure 1 below:</p><br>
+
+            <img src="assets\figure1.png" class="figure">
+            <span class = caption><p>Figure 1: Example of a SQLi UNION command attack</p></span><br>
+            
+
             <h2>What impact does it have?</h2>
 
-            <h2>How can we test for it?</h2>
+            <h2>How can we test for it?</h2><br>
+
+            <div class = references>
+                <h2>References:</h2>
+                <ul2>
+                    <li>EC-Council (2024) “What Is SQL Injection | SQL Injection Attack | SQL Injection Example.” Cybersecurity Exchange 
+                        www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-sql-injection-attack/. Accessed 7 Apr.</li><br>
+                    <li>Portswigger (2024) “What Is SQL Injection? Tutorial & Examples | Web Security Academy.” Portswigger.net,
+                        portswigger.net/web-security/sql-injection#what-is-sql-injection-sqli.</li>
+                    <li>Portswigger (2024) “SQL Injection Cheat Sheet | Web Security Academy.” Portswigger.net, portswigger.net/web-security/sql-injection/cheat-sheet.
+                        Accessed 7 Apr.
+                    </li>
+
+                </ul2>
+                
+                </div>
 
         </div>
 </body>
