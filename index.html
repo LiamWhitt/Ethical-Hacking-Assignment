@@ -79,29 +79,43 @@
             }
             
             h1 {
-                font-size: 3.5em;
+                font-size: 4em;
             }
 
             h2 {
-                font-size: 3em;
+                font-size: 3.5em;
             }
 
             h3 {
-                font-size: 2.5em;
+                font-size: 3em;
             }
 
-            dt, dd, p, .author {
+            dt, dd, p, ul li a, ol {
+                font-size: 2em;
+            }
+            
+            .author {
                 font-size: 1.5em;
+            }
+
+            figcaption {
+                font-size: 26px;
             }
             
 
         }
         @media only screen and (max-width: 700px) {
-
+            
             ul {
                 display:none;
             }
 
+            .references {
+                padding: 20px;
+                background-color: #3af3293f;
+                height: 100%;
+
+            }
             .mobileLogo {
                 content:url(assets/logoMobile.png);
                 width: 70px;
@@ -153,9 +167,8 @@
 
             }
 
-            .img1 {
-                max-width: 100%;
-                height: auto;
+            .figure {
+                margin-left: -5px;
             }
 
 
@@ -167,7 +180,7 @@
             }
 
             .author {
-                font-size: 2.5vw;
+                font-size: 3vw;
                 font-family: Poppins;
                 font-style: italic;
                 color: #1e1e1e;
@@ -187,10 +200,16 @@
                 color: black;
             }
 
-            p, dt, dd, code {
+            p, dt, dd, code, ol {
                 font-size: 4vw;
                 font-family: Poppins;
                 color: #1e1e1e;
+            }
+
+            figcaption {
+                font-size: 3vw;
+                font-family: Poppins;
+
             }
 
             .container {
@@ -236,18 +255,18 @@
             <h2>What even is it?</h2>
             <p>There are a wide range of vulnerabilities that SQLi offers, such as:</p><br>
             <dl>
-                <dt>Retrieving hidden data:</dt><br>
+                <dt>Retrieving hidden data:</dt>
                 <dd>- Manipulating SQL queries into giving hidden data.</dd><br>
                 
-                <dt>Subverting application logic:</dt><br>
+                <dt>Subverting application logic:</dt>
                 <dd>- Injecting code which can change how a site’s code processes input or data.</dd><br>
                 
-                <dt>Retrieving data from other database tables:</dt><br>
+                <dt>Retrieving data from other database tables:</dt>
                 <dd>- Injecting SQL code to gather data from a separate table and add it to the original query output.</dd><br>
             </dl> 
 
             <p>I will explain how these three main principles work but for a more general definition the creators of Burpe Suite A.K.A Portswigger (2024) define SQLi as:
-               "A web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database." This can allow an attacker to gain
+               <i>"A web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database."</i> This can allow an attacker to gain
                access to unauthorized user data, they also may be able to change said data or even delete it.</p><br>
 
                <p>If this were to happen it could cost a company a lot of money not only financially but legally too, EC-Council (2024) states an example of this by saying:</p><br> 
@@ -286,7 +305,7 @@
             <div class = tip>
             <p><b>TIP :</b> you can use the Portswigger (2024) “SQL Injection Cheat Sheet” where you can see a variety of different syntax’s you would use in an SQLi attack:</p><br>
                 
-            <p>https://portswigger.net/web-security/sql-injection/cheat-sheet</p>
+            <a href = "https://portswigger.net/web-security/sql-injection/cheat-sheet"><p>https://portswigger.net/web-security/sql-injection/cheat-sheet</p></a>
             </div><br>
 
             <p>We will continue to use the SQL comment tag as shown in the ‘Cheat Sheet’ and the last example but in a different scenario.</p><br>
@@ -300,7 +319,7 @@
             <p>The example shown above is the credential check for “Tyler”, however since the website was developed by a band member to save money
                (who also knows nothing about our secret SQLi trick), we can not only login as “Tyler” but also as anyone.</p><br>
 
-            <p>We can do this by adding a comment tag (--) at the end of our (or anyone’s) username to login to that account without the need of a password:</p><br>
+            <p>We can do this by adding a comment tag <code>(--)</code> at the end of our (or anyone’s) username to login to that account without the need of a password:</p><br>
 
             <p><code>SELECT * FROM users WHERE username = 'Tyler'--' AND password = ''</code></p><br>
 
@@ -309,7 +328,7 @@
 
             <p>We will see this same logic in the demonstration I will show later, showing how you can actually perform this attack <i>(legally).</i></p><br>
             
-            <h3>Retrieving data from other database tables:</h3><br>
+            <h3>Retrieving data from other database tables:</h3>
 
             <p>This can also be commonly called an <span class = keyword>SQLi UNION attack.</span></p><br>
 
@@ -317,7 +336,7 @@
                Portswigger (2024) give the example shown in figure 1 below:</p><br>
 
             <img src="assets\figure1.png" class="figure">
-            <span class = caption><p>Figure 1: Example of a SQLi UNION command attack</p></span><br>
+            <figcaption><i>Figure 1 : Example of a SQLi UNION command attack<i></figcaption><br>
             
 
             <h2>What impact does it have?</h2>
@@ -326,18 +345,16 @@
 
             <div class = references>
                 <h2>References:</h2>
-                <ul2>
+                <ol>
                     <li>EC-Council (2024) “What Is SQL Injection | SQL Injection Attack | SQL Injection Example.” Cybersecurity Exchange 
                         www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-sql-injection-attack/. Accessed 7 Apr.</li><br>
                     <li>Portswigger (2024) “What Is SQL Injection? Tutorial & Examples | Web Security Academy.” Portswigger.net,
                         portswigger.net/web-security/sql-injection#what-is-sql-injection-sqli.</li><br>
                     <li>Portswigger (2024) “SQL Injection Cheat Sheet | Web Security Academy.” Portswigger.net, portswigger.net/web-security/sql-injection/cheat-sheet.
                         Accessed 7 Apr.
-                    </li>
-
-                </ul2>
-                
-                </div>
+                    </li><br>
+                </ol>
+            </div>
 
         </div>
 </body>
