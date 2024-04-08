@@ -1,11 +1,13 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
+
     <script
-	src="https://code.jquery.com/jquery-3.7.1.min.js"
-	integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-	crossorigin="anonymous">
+		src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous">
     </script>
-	
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,6 +42,8 @@
         </script>
 
     <style>
+
+
         @media only screen and (min-width: 701px) {
 
             .dropbtn {
@@ -74,6 +78,7 @@
 
             .github {
                 margin-top: 0.5em;
+
             }
 
             .logo {
@@ -97,6 +102,7 @@
                 font-size: 2em;
             }
             
+            
             .author {
                 font-size: 1.5em;
             }
@@ -104,6 +110,8 @@
             figcaption {
                 font-size: 26px;
             }
+            
+
         }
         @media only screen and (max-width: 700px) {
             
@@ -146,7 +154,7 @@
                 padding: 12px 16px;
                 text-decoration: none;
                 font-family: Poppins;
-                border-color: black;
+                border-color:#48bb6b;
                 border-style: groove;
                 border-width: 2px;
                 display: block;
@@ -232,17 +240,16 @@
         <div class="dropdown">
             <img id = "btn" onclick="myFunction()" class="dropbtn" src="assets/dropdown.png"></img>
             <div id="myDropdown" class="dropdown-content">
-              <a href="https://github.com/LiamWhitt">Github</a>
-              <a href="#">About me</a>
+              <a style = "border-bottom: none;" href = "https://github.com/LiamWhitt">Github</a>
+              <a style = "border-bottom: none;" href="#">About me</a>
               <a href="#">Contact</a>
             </div>
         </div> 
     </nav>
 
     <script>
-        
         $(window).scroll(function() {
-            if (checkVisible($('.mobileLogo'))) {
+            if (checkVisible($('nav'))) {
                 $('.dropbtn').css("opacity", "100");
             } else {
                 $('.dropbtn').css("opacity", "0.3");
