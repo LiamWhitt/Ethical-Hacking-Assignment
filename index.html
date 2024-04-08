@@ -1,5 +1,12 @@
 <html lang="en">
 <head>
+
+    <script
+		src="https://code.jquery.com/jquery-3.7.1.min.js"
+		integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+		crossorigin="anonymous">
+    </script>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -120,6 +127,7 @@
 
              /* Dropdown Button */
                 .dropbtn {
+                position: fixed;
                 margin-top: 0.5em;
                 width: 25px;
                 height: 25px;
@@ -130,7 +138,8 @@
                 /* Dropdown Content (Hidden by Default) */
                 .dropdown-content {
                 display: none;
-                position: absolute;
+                position: fixed;
+                margin-top: 35px;
                 background-color: #f1f1f1;
                 min-width: 160px;
                 border: 1px black;
@@ -236,6 +245,28 @@
             </div>
         </div> 
     </nav>
+
+    <script>
+        
+        $(window).scroll(function() {
+            if (checkVisible($('.mobileLogo'))) {
+                $('.dropbtn').css("opacity", "100");
+            } else {
+                $('.dropbtn').css("opacity", "0.5");
+            }
+        });
+        
+        function checkVisible( elm, eval ) {
+            eval = eval || "visible";
+            var vpH = $(window).height(),
+                st = $(window).scrollTop(), 
+                y = $(elm).offset().top,
+                elementHeight = $(elm).height();
+            
+            if (eval == "visible") return ((y < (vpH + st)) && (y > (st - elementHeight)));
+            if (eval == "above") return ((y < (vpH + st)));
+        }
+    </script>
 
     <div class="container">
             <h1>What is SQL injection? Definition, demonstration, and why you must know</h1>
