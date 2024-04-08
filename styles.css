@@ -95,7 +95,8 @@ ul li a {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    height: 500vh;
+    display: flex;
+    flex-direction: column;
 
 
 }
@@ -149,12 +150,11 @@ code {
   
 
 .references {
-    padding: 40px;
+    overflow: hidden;
+    padding: 25px;
     background-color: #3af3293f;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
-
 
 }
 
