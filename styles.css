@@ -39,11 +39,9 @@ dd {
 }
 
 ul li {
-    
     list-style: none;
     display: inline-block;
     float: right;
-
 }
 
 .logo {
@@ -106,7 +104,7 @@ h1 {
 
 }
 
-.author, .figcaption {
+.author, figcaption {
     font-size: 1em;
     font-family: Poppins;
     font-style: italic;
