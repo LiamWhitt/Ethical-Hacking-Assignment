@@ -169,6 +169,8 @@ q {
 
 .tip {
     display: table;
+    font-size: 1em !important;
+    font-family: Poppins;
     background-color: #b0ffb1;
     font-style: italic;
     padding: 1em;
@@ -181,6 +183,7 @@ p, ol {
     font-size: 1.2em;
     font-family: Poppins;
     color: #1e1e1e
+
 }
 
 
