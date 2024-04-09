@@ -2,6 +2,7 @@
     -webkit-tap-highlight-color: transparent; /* for removing the highlight */
     margin: 0;
     padding: 0;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -141,7 +142,15 @@ code {
     font-family: courier, monospace;
     padding: 0 3px;
   }
-  
+
+q {
+    display: table;
+    border-style: solid;
+    border-color: #3af3293f;
+    border-width: 5px;
+    padding: 0.6em;
+    font-style: italic;
+}
 
 .references {
     overflow: hidden;
@@ -152,7 +161,14 @@ code {
 
 }
 
+.rlink {
+    text-decoration: none;
+    color:#00b8e6;
+    font-family: Poppins;
+}
+
 .tip {
+    display: table;
     background-color: #b0ffb1;
     font-style: italic;
     padding: 1em;
