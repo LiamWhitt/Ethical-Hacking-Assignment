@@ -133,7 +133,6 @@
 
              /* Dropdown Button */
                 .dropbtn {
-                position: fixed;
                 margin-top: 0.5em;
                 width: 25px;
                 height: 25px;
@@ -256,8 +255,10 @@
         $(window).scroll(function() {
             if (checkVisible($('nav'))) {
                 $('.dropbtn').css("opacity", "100");
+                $('.dropbtn').css("position", "static");
             } else {
                 $('.dropbtn').css("opacity", "0.3");
+                $('.dropbtn').css("position", "fixed");
             }
         });
         
@@ -316,7 +317,7 @@
 
             <p>It wants all the details <code>(*)</code> from the <code>merch</code> table, where the <code>category</code> is <code>apparel</code> and <code>released</code> = <code>1</code>
             (true). We see that the site is using “released = 1” to only show released merchandise. However, what if we want the <i>unreleased</i> merchandise for the upcoming tour?
-            Since the site has such poor security practises and is completely open to SQLi we can add a comment tag to the end of apparel:</p><br>
+            Since the site has such poor security practises and is completely open to SQLi we can add a comment tag (<code>--</code>) to the end of apparel:</p><br>
 
             <p><code>https://good-rock-band-bad-website.co.uk/merch?category=apparel’--</code></p><br>
 
