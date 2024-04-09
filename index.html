@@ -68,6 +68,10 @@
 
         @media only screen and (min-width: 2560px) {
 
+            .tip {
+                font-size: 1.8em !important;
+            }
+
             .container {
                 max-width: 1100px;
             }
@@ -119,6 +123,11 @@
 
         }
         @media only screen and (max-width: 700px) {
+
+            .tip {
+                font-size: 3.5vw !important;
+            }
+
             
             ul {
                 display:none;
@@ -328,17 +337,13 @@
             <p>As it has appended a SQL comment tag it basically rendered the next part of code useless, thus removing the restriction so the site now shows the unreleased
             merchandise ready for the upcoming tour.</p><br>
 
-            <h3>Subverting application logic:</h3><br>
+            <h3>Subverting application logic:</h3>
+            <p>We will continue to use the SQL comment tag (<code>--</code>) as shown in the ‘Cheat Sheet’ and the last example but in a different scenario.</p><br>
 
-            <span class = tip><p><b>TIP :</b> you can use the Portswigger (2024) “SQL Injection Cheat Sheet” where you can see a variety of different syntax’s you would use in an SQLi attack:</p><br>
-                
-            <a href = "https://portswigger.net/web-security/sql-injection/cheat-sheet"><p style="color: rgb(0, 95, 95);">https://portswigger.net/web-security/sql-injection/cheat-sheet</p></a></span>
+            <span class = tip><b>TIP :</b> you can use the Portswigger (2024) “SQL Injection Cheat Sheet” where you can see a variety of different syntax’s you would use in an SQLi attack:<br>
+                <a href = "https://portswigger.net/web-security/sql-injection/cheat-sheet" style="color: rgb(0, 95, 95);">https://portswigger.net/web-security/sql-injection/cheat-sheet</a></span>
 
-
-            <br><p>We will continue to use the SQL comment tag (<code>--</code>) as shown in the ‘Cheat Sheet’ and the last example but in a different scenario.</p><br>
-            <p></p>
-
-            <p>Pretend that the non-existent “rock band” we saw earlier also has a login page to show your purchased tickets,
+            <br><p>Pretend that the non-existent “rock band” we saw earlier also has a login page to show your purchased tickets,
                this time it gives the check using the following query:</p><br>
 
             <p><code>SELECT * FROM users WHERE username = 'Tyler' AND password = 'Cl4ncy'</code></p><br>
@@ -365,16 +370,16 @@
             <img src="assets\figure1.png" class="figure">
             <figcaption>Figure 1 : Example of a SQLi UNION command attack (Source: Portswigger 2024 <a id = "reflink1" class = "rlink" href="#r1"><sup> [1]</sup></a>)</figcaption><br>
 
+            <p>the <code>UNION</code> command allows another <code>select</code> keyword to be added, it then will get the outcome and append it to the original query.</p><br>
 
-            <span class = tip><p>You can read more about <span class = keyword>UNION attacks</span> here:</p>
-                <a href = "https://portswigger.net/web-security/sql-injection/union-attacks"><p style="color: rgb(0, 95, 95);">
-                    https://portswigger.net/web-security/sql-injection/union-attacks</p></a></span><br>
+            <span class = tip>You can read more about <span class = keyword>UNION attacks</span> here:<br>
+                <a href = "https://portswigger.net/web-security/sql-injection/union-attacks" style="color: rgb(0, 95, 95);">
+                    https://portswigger.net/web-security/sql-injection/union-attacks</a></span><br>
 
             <h2>What impact does it have?</h2>
                 <p>SQLi can allow an attacker to gain access to unauthorized user data, they also may be able to change said data or even delete it.
                    If this were to happen it could cost a company a lot of money not only financially but legally too, as ordinary people’s identities or money could also be stolen.
-                   This is due to SQL itself allowing the possibility of the output data to be chosen from the database, and data to be modified in different ways such as inserting it into a new column allowing it to be retrieved.
-                   If this were to happen it could cost a company a lot of money not only financially but legally too, EC-Council (2024) states an example of this by saying:</p><br> 
+                   This is due to SQL itself allowing the possibility of the output data to be chosen from the database. EC-Council (2024) states an example of this by saying:</p><br> 
 
                <p><q>An attacker can use SQL Injection in a financial application to make some transactions void, change balances, or move money from the user’s account to another account.<a id = "reflink2" class = "rlink" href="#r2"><sup> [2]</sup></a></q></p><br>
                 
