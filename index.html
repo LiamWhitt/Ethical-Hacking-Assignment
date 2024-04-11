@@ -124,7 +124,6 @@
                 display: block !important;
             }
 
-             /* Dropdown Button */
                 .dropbtn {
                 margin-top: 0.5em;
                 width: 25px;
@@ -133,7 +132,6 @@
                 cursor: pointer;
                 }
    
-                /* Dropdown Content (Hidden by Default) */
                 .dropdown-content {
                 display: none;
                 position: fixed;
@@ -145,7 +143,6 @@
                 z-index: 1;
                 }
 
-                /* Links inside the dropdown */
                 .dropdown-content a {
                 color: black;
                 padding: 12px 16px;
@@ -157,10 +154,8 @@
                 display: block;
                 }
 
-                /* Change color of dropdown links on hover */
                 .dropdown-content a:hover {background-color: #ddd;}
 
-                /* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
                 .show {display:block;} 
 
             .logo {
@@ -172,6 +167,7 @@
             .figure, .img {
                 margin-left: -5px;
             }
+
 
             h1 {
                 font-size: 7vw;
@@ -348,13 +344,13 @@
 
             <p>This can also be commonly called an <span class = keyword>SQLi UNION attack.</span></p><br>
 
-            <p id = "figure1">As I summarised before we are basically selecting other data and adding it back to the original query. This can be done with the UNION command.
+            <p id = "figure1">As I summarised before we are basically selecting other data and adding it back to the original query. This can be done with the <code>UNION</code> command.
                Portswigger (2024) give the example shown in figure 1 below:</p><br>
 
             <img src="assets\figure1.png" class="figure">
             <figcaption>Figure 1 : Example of a SQLi UNION command attack (Source: Portswigger 2024 <a id = "reflink1" class = "rlink" href="#r1"><sup> [1]</sup></a>)</figcaption><br>
 
-            <p>the <code>UNION</code> command allows another <code>select</code> keyword to be added, it then will get the outcome and append it to the original query.
+            <p>the <code>UNION</code> command allows another <code>SELECT</code> keyword to be added, it then will get the outcome and append it to the original query.
                I will be using a more in-depth example for the demonstration later on!</p><br>
 
             <span class = tip>You can read more about <span class = keyword>UNION attacks</span> here:<br>
@@ -383,15 +379,15 @@
             <p>After we open the pre-configured browser inside Burp (Proxy -> Open Browser) we will visit our exercise:<br> "SQL injection attack, querying the database type and version on Oracle"</p>
             </dl><br>
 
-            <p>We are greeted with the following webpage:</p><br>
+            <p>We are then greeted with the following webpage:</p><br>
 
             <img src="assets\img1.png" class="img">
 
-            <p><br>As we are asked to "<i>query</i> the database type and version" it means we will need to use a UNION attack, and because we want to get information from other tables
-                we need to know how many <span class = keyword>columns</span> it has to make a valid request, and find one that can have <span class="keyword">text inputted into it.</span> this will help us inject what we need, which
-                is to find out what the database type and version is.</p><br>
+            <p><br>Since we want to get information from other tables we need to know how many <span class = keyword>columns</span> it has to make a valid request,
+                   and find one that can have <span class="keyword">text inputted into it.</span> this will help us inject what we need, which
+                   is to find out what the database type and version is.</p><br>
 
-            <p>First lets analyse the web page, we can determine that there are at least 2 columns as each item on the site has two entries; the title and description of the item.
+            <p>First lets analyse the web page, we can determine that there are at least two columns as each item on the site has two entries; the title and description of the item.
                 Also if we look there seems that there are really only links to exploit, but before we click on one we should let Burp Suite intercept the request.</p><br>
 
             <img src="assets\img2.png" class="img">
@@ -405,8 +401,8 @@
             <img src="assets\img4.png" class="img">
 
             <p><br>The first step in finding any low-level SQLi vulnerability is simply going into the query and inputting an apostrophe <code>'</code>. In reference to Stack Overflow user Sampson, J. (2012),
-                doing this would create: "ambiguity - the interpreter doesn't know where [the] string ends.<a id = "reflink4" class = "rlink" href="#r4"><sup> [4]</sup></a>" This results in a syntax error meaning we can inject things as the strings in the
-                query are considered <span class = keyword>unsanitized</span> showing the user input can effect the syntax of the query.</p><br>
+                doing this would create: "ambiguity - the interpreter doesn't know where [the] string ends.<a id = "reflink4" class = "rlink" href="#r4"><sup> [4]</sup></a>" This results in a syntax error meaning we can inject things as
+                the input is considered <span class = keyword>unsanitized</span>. It also shows the user input can effect the syntax of the query.</p><br>
 
             <img src="assets\img5.png" class="img">
 
