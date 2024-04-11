@@ -267,7 +267,7 @@
 
     <div class="container">
             <h1>What is SQL injection? Definition, demonstration, and why you must know</h1>
-                <p class="author"><br>Liam Whittaker | Mar 3rd | 10 minute read</p>
+                <p class="author"><br>Liam Whittaker | Mar 3rd | 5 minute read</p>
                 <br>
                 <img src="assets\sql-6060942_640.png" class="introimg">
 
@@ -370,6 +370,8 @@
 
                 <p><i>Ouch</i> this is what happens when a company fails to comply with basic security practises...</p><br>
 
+            <h2>What can cause it and how can we resolve it></h2>
+
             <h2>How can we test for it?</h2><br>
 
             <p>Lets use Portswigger's web-security academy vulnerability labs to learn how to test for SQL Injections, we will do a
@@ -410,11 +412,11 @@
                This is a more complicated version of the <a href = "#figure1" style = "color: rgb(0, 95, 95)";>Portswigger example,</a> however the main difference is that we are selecting data
                from <code>DUAL</code> because according to pentestmonkey.net (2024)</p><br>
 
-               <q>SELECT statements must have a FROM clause in Oracle so we have to use the dummy table name ‘dual’ when we’re not actually selecting from a table.<a id = "reflink5" class = "rlink" href="#r5"><sup> [5]</sup></a></q><br>
+               <p><q>SELECT statements must have a FROM clause in Oracle so we have to use the dummy table name ‘dual’ when we’re not actually selecting from a table.<a id = "reflink5" class = "rlink" href="#r5"><sup> [5]</sup></a></q></p><br>
 
                <p>The DUAL table is practically a default table in Oracle that literally has only one column called "Dummy", it's only main use according to Keesling <i>et al.</i> (2024) is:</p><br>
 
-               <q>When a value must be returned only once, for example, the current date and time. All database users have access to DUAL.<a id = "reflink6" class = "rlink" href="#r6"><sup> [6]</sup></a></q><br>
+               <p><q>When a value must be returned only once, for example, the current date and time. All database users have access to DUAL.<a id = "reflink6" class = "rlink" href="#r6"><sup> [6]</sup></a></q></p><br>
 
             <img src="assets\img6.png" class="img">
 
