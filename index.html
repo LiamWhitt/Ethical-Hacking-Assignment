@@ -274,7 +274,7 @@
             <h1>What is SQL injection? Definition, demonstration, and why you must know</h1>
                 <p class="author"><br>Liam Whittaker | Mar 3rd | 10 minute read</p>
                 <br>
-                <img src="assets\sql-6060942_640.png" class="img">
+                <img src="assets\sql-6060942_640.png" class="introimg">
 
                 <p><br>Whether you are aware of <span class="keyword">SQLi (SQL Injection)</span> or not, this blog post will go over everything you need to know. But before I delve deep into ‘SQL Injecting’
                     and how it works, its impact, the potential causes, how it can be resolved etc, etc. I will need to explain what it actually is in the first place.
@@ -293,7 +293,7 @@
                 <dd>- Injecting SQL code to gather data from a separate table and add it to the original query output.</dd><br>
             </dl> 
 
-            <p>I will explain how these three main principles work but for a more general definition the creators of Burpe Suite A.K.A Portswigger (2024) define SQLi as:</p><br>
+            <p>I will explain how these three main vulnerabilities work but for a more general definition the creators of Burpe Suite A.K.A Portswigger (2024) define SQLi as:</p><br>
             
             <p><q>A web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. <a id = "reflink1" class = "rlink" href="#r2"><sup> [1]</sup></a></q></p><br>
 
@@ -304,7 +304,7 @@
             <p><code>https://good-rock-band-bad-website.co.uk/merch?category=apparel</code></p>
             </p><br>
 
-            <p>this URL contains all the clothing merchandise for your band.</p>
+            <p>This URL contains all the clothing merchandise for your band.</p>
 
             <p>Unfortunately, they for some reason have their home-made website running off a raspberry PI in their grandparent’s basement, which happens to be incredibly insecure and
             the site makes this SQL query to retrieve the data:</p><br>
@@ -315,16 +315,16 @@
             (true). We see that the site is using “released = 1” to only show released merchandise. However, what if we want the <i>unreleased</i> merchandise for the upcoming tour?
             Since the site has such poor security practises and is completely open to SQLi we can add a comment tag (<code>--</code>) to the end of apparel:</p><br>
 
-            <p><code>https://good-rock-band-bad-website.co.uk/merch?category=apparel’--</code></p><br>
+            <p><code>https://good-rock-band-bad-website.co.uk/merch?category=apparel’ --</code></p><br>
 
-            <p>Since the query takes the data from the URL and appends it straight into the request it now looks more like this:</p><br>
+            <p>Since the site takes the data from the request and appends it straight into the query it now looks like this:</p><br>
 
-            <p><code>SELECT * FROM merch WHERE category = 'apparel’--' AND released = 1</code></p><br>
+            <p><code>SELECT * FROM merch WHERE category = 'apparel’ --' AND released = 1</code></p><br>
 
             <p>As it has appended a SQL comment tag it basically rendered the next part of code useless, thus removing the restriction so the site now shows the unreleased
             merchandise ready for the upcoming tour.</p><br>
 
-            <h3>Subverting application logic:</h3>
+            <h3 id = "cheat-sheet">Subverting application logic:</h3>
             <p>We will continue to use the SQL comment tag (<code>--</code>) as shown in the ‘Cheat Sheet’ and the last example but in a different scenario.</p><br>
 
             <span class = tip><b>TIP :</b> you can use the Portswigger (2024) “SQL Injection Cheat Sheet” where you can see a variety of different syntax’s you would use in an SQLi attack:<br>
@@ -344,20 +344,19 @@
 
             <p>Just like the last example it removes the last part of the code that checks for the password, allowing us to freely login as Tyler
                or even an administrator without prompting a password.</p><br>
-
-            <p>We will see this same logic in the demonstration I will show later, showing how you can actually perform this attack <i>(legally).</i></p><br>
             
             <h3>Retrieving data from other database tables:</h3>
 
             <p>This can also be commonly called an <span class = keyword>SQLi UNION attack.</span></p><br>
 
-            <p>As I summarised before we are basically selecting other data and adding it back to the original query. This can be done with the UNION command.
+            <p id = "figure1">As I summarised before we are basically selecting other data and adding it back to the original query. This can be done with the UNION command.
                Portswigger (2024) give the example shown in figure 1 below:</p><br>
 
             <img src="assets\figure1.png" class="figure">
             <figcaption>Figure 1 : Example of a SQLi UNION command attack (Source: Portswigger 2024 <a id = "reflink1" class = "rlink" href="#r1"><sup> [1]</sup></a>)</figcaption><br>
 
-            <p>the <code>UNION</code> command allows another <code>select</code> keyword to be added, it then will get the outcome and append it to the original query.</p><br>
+            <p>the <code>UNION</code> command allows another <code>select</code> keyword to be added, it then will get the outcome and append it to the original query.
+               I will be using a more in-depth example for the demonstration later on!</p><br>
 
             <span class = tip>You can read more about <span class = keyword>UNION attacks</span> here:<br>
                 <a href = "https://portswigger.net/web-security/sql-injection/union-attacks" style="color: rgb(0, 95, 95);">
@@ -368,15 +367,73 @@
                    If this were to happen it could cost a company a lot of money not only financially but legally too, as ordinary people’s identities or money could also be stolen.
                    This is due to SQL itself allowing the possibility of the output data to be chosen from the database. EC-Council (2024) states an example of this by saying:</p><br> 
 
-               <p><q>An attacker can use SQL Injection in a financial application to make some transactions void, change balances, or move money from the user’s account to another account.<a id = "reflink2" class = "rlink" href="#r2"><sup> [2]</sup></a></q></p><br>
+                <p><q>An attacker can use SQL Injection in a financial application to make some transactions void, change balances, or move money from the user’s account to another account.<a id = "reflink2" class = "rlink" href="#r2"><sup> [2]</sup></a></q></p><br>
                 
                 <p>A big case that was reported by the ICO (Information Commissioner’s Office) themselves in 2016, was about the SQLi attack on major telecommunication brand TalkTalk. The report stated that the ICO issued:</p><br>
                     
-                <p><q>its biggest ever fine – £400,000 – to TalkTalk after taking into account a range of factors demonstrating the seriousness of the event. <a id = "reflink3" class = "rlink" href="#r3"><sup> [3]</sup></a></q></p><br>
+                <p><q>Its biggest ever fine – £400,000 – to TalkTalk after taking into account a range of factors demonstrating the seriousness of the event. <a id = "reflink3" class = "rlink" href="#r3"><sup> [3]</sup></a></q></p><br>
 
-                <p><i>Ouch </i>this is what happens when a company fails to comply with basic security practises...</p><br>
+                <p><i>Ouch</i> this is what happens when a company fails to comply with basic security practises...</p><br>
 
             <h2>How can we test for it?</h2><br>
+
+            <p>Lets use Portswigger's web-security academy vulnerability labs to learn how to test for SQL Injections, we will do a
+               bit more of a complicated exercise compared to the examples I gave before.
+            </p><br>
+
+            <p>After we open the pre-configured browser inside Burp (Proxy -> Open Browser) we will visit our exercise:<br> "SQL injection attack, querying the database type and version on Oracle"</p>
+            </dl><br>
+
+            <p>We are greeted with the following webpage:</p><br>
+
+            <img src="assets\img1.png" class="img">
+
+            <p><br>As we are asked to "<i>query</i> the database type and version" it means we will need to use a UNION attack, and because we want to get information from other tables
+                we need to know how many <span class = keyword>columns</span> it has to make a valid request, and find one that can have <span class="keyword">text inputted into it.</span> this will help us inject what we need, which
+                is to find out what the database type and version is.</p><br>
+
+            <p>First lets analyse the web page, we can determine that there are at least 2 columns as each item on the site has two entries; the title and description of the item.
+                Also if we look there seems that there are really only links to exploit, but before we click on one we should let Burp Suite intercept the request.</p><br>
+
+            <img src="assets\img2.png" class="img">
+
+            <p><br>Simply press the button next to "Drop" and now if we click on one... lets just say "Gifts" and go into Burp and click on our target we get the following request:</p><br>
+
+            <img src="assets\img3.png" class="img">
+
+            <p><br>We should send this to the repeater so we can edit the request and send it back to the application.</p><br>
+
+            <img src="assets\img4.png" class="img">
+
+            <p><br>The first step in finding any low-level SQLi vulnerability is simply going into the query and inputting an apostrophe <code>'</code>. In reference to Stack Overflow user Sampson, J. (2012),
+                doing this would create: "ambiguity - the interpreter doesn't know where [the] string ends.<a id = "reflink4" class = "rlink" href="#r4"><sup> [4]</sup></a>" This results in a syntax error meaning we can inject things as the strings in the
+                query are considered <span class = keyword>unsanitized</span> showing the user input can effect the syntax of the query.</p><br>
+
+            <img src="assets\img5.png" class="img">
+
+            <p><br>Now we have to find how many columns the query has, the easiest way to do this is inputting 'NULL' until we get an OK from the server. In this case it was only two.
+               This is a more complicated version of the <a href = "#figure1" style = "color: rgb(0, 95, 95)";>Portswigger example,</a> however the main difference is that we are selecting data
+               from <code>DUAL</code> because according to pentestmonkey.net (2024)</p><br>
+
+               <q>SELECT statements must have a FROM clause in Oracle so we have to use the dummy table name ‘dual’ when we’re not actually selecting from a table.<a id = "reflink5" class = "rlink" href="#r5"><sup> [5]</sup></a></q><br>
+
+               <p>The DUAL table is practically a default table in Oracle that literally has only one column called "Dummy", it's only main use according to Keesling <i>et al.</i> (2024) is:</p><br>
+
+               <q>When a value must be returned only once, for example, the current date and time. All database users have access to DUAL.<a id = "reflink6" class = "rlink" href="#r6"><sup> [6]</sup></a></q><br>
+
+            <img src="assets\img6.png" class="img">
+
+            <p><br>Next, if we find which one we can input text into by replacing <code>NULL</code> with any string such as "'test'" (which in this case was the first column).
+               We now know which one to append our payload to, and we can clearly see that "test" has successfully worked.</p><br>
+
+            <img src="assets\img7.png" class="img">
+
+            <p><br>If we take a look at the <a href = "#cheat-sheet" style="color: rgb(0, 95, 95);">cheat-sheet</a> we can find what syntax we need for the database version for
+            <span class = keyword>Oracle</span>, in this case it was <code>banner FROM v$version</code>. All there is left to do is input that into the string compatible column and the rest of the syntax.</p><br>
+    
+            <img src="assets\img8.png" class="img">
+
+            <p><br>Et voila! we sent the request to the application and it has now displayed the database version! Thank you for reading and congratulations on solving the lab.</p><br>
 
             <div class = references>
                 <h2>References:</h2>
@@ -387,6 +444,14 @@
                         www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-sql-injection-attack/. Accessed 7 Apr.</li><br>
                     <li style="margin-left: 0.8em;" id = "r3">ICO (2016) “TalkTalk Cyber Attack – How the ICO’s Investigation Unfolded.” Ico.org.uk, 
                         ico.org.uk/about-the-ico/media-centre/talktalk-cyber-attack-how-the-ico-investigation-unfolded/.</li><br>
+                    <li style="margin-left: 0.8em;" id = "r4">Sampson, J. (2012). What does it mean to escape a string? [online] Stack Overflow. Available at: 
+                        https://stackoverflow.com/a/10646166 [Accessed 11 Apr. 2024].</li><br>
+                    <li style="margin-left: 0.8em;" id = "r5">pentestmonkey.net. (2024). Oracle SQL Injection Cheat Sheet | pentestmonkey. [online] Available at: 
+                        https://pentestmonkey.net/cheat-sheet/sql-injection/oracle-sql-injection-cheat-sheet.</li><br>
+                    <li style="margin-left: 0.8em;" id = "r6">Keesling, D., Kyte, T., McCormack, J., Adams, D., Agrawal, A., Anthony, T., Arora, V., Athraya, J., Austin, D., 
+                        Baby, T., Barriere, V., Baer, H., Battula, S., Bayliss, N., Bednar, T., Beecher, V., Bolltoft, B., Bose, A., Brower, D. and Carpenter, L. (2024). 
+                        Data Dictionary and Dynamic Performance Views. [online] Oracle Help Center. 
+                        Available at: https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/data-dictionary-and-dynamic-performance-views.html#GUID-5A3DBE1B-1582-4452-B18A-7635EAE81075 [Accessed 11 Apr. 2024].</li><br>
                 </ol>
             </div>
 
