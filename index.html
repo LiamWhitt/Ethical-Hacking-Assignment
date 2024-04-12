@@ -370,10 +370,10 @@
 
                 <p><i>Ouch</i> this is what happens when a company fails to comply with basic security practises...</p><br>
 
-            <h2>What can cause it and how can we resolve it></h2>
+            <h2>What can cause it and how can we resolve it?</h2>
+            <p>...</p><br>
 
-            <h2>How can we test for it?</h2><br>
-
+            <h2>How can we test for it?</h2>
             <p>Lets use Portswigger's web-security academy vulnerability labs to learn how to test for SQL Injections, we will do a
                bit more of a complicated exercise compared to the examples I gave before.
             </p><br>
@@ -402,9 +402,12 @@
 
             <img src="assets\img4.png" class="img">
 
-            <p><br>The first step in finding any low-level SQLi vulnerability is simply going into the query and inputting an apostrophe <code>'</code>. In reference to Stack Overflow user Sampson, J. (2012),
+            <p><br>The first step in finding any low-level SQLi vulnerability is simply going into the query and inputting an apostrophe <code>'</code> or quotation marks. In reference to Stack Overflow user Sampson, J. (2012),
                 doing this would create: "ambiguity - the interpreter doesn't know where [the] string ends.<a id = "reflink4" class = "rlink" href="#r4"><sup> [4]</sup></a>" This results in a syntax error meaning we can inject things as
-                the input is considered <span class = keyword>unsanitized</span>. It also shows the user input can effect the syntax of the query.</p><br>
+                the input is considered <span class = keyword>unsanitized</span>. It also shows the user input can effect the syntax of the query, the string would now look more like this example:</p><br>
+
+                <img src="assets\figure2.png" class="figure" style = "max-width: 50%;">
+                <figcaption>The interpreter now reading the incoming input as actual code after the SQL code input. (Source: Sampson, J. 2012 <a id = "reflink4" class = "rlink" href="#r4"><sup> [4]</sup></a>)</figcaption><br>
 
             <img src="assets\img5.png" class="img">
 
