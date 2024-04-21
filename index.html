@@ -109,7 +109,7 @@
                 font-size: 3.5vw !important;
             }
             
-            ul {
+            #desktopList {
                 display:none;
             }
 
@@ -135,7 +135,7 @@
                 .dropdown-content {
                 display: none;
                 position: fixed;
-                margin-top: 35px;
+                margin-top: auto;
                 background-color: #f1f1f1;
                 min-width: 160px;
                 border: 1px black;
@@ -224,13 +224,14 @@
 </head>
 
 <body>
+    <div class = "nav">
     <nav>
         <div class = "mobileLogo"></div>
-        <ul>
+        <ul id = "desktopList">
             <img src="assets\logo.png" width="70" height="70" class="logo"> 
             <li><a href="https://github.com/LiamWhitt"><img src="assets\github-mark-c791e9551fe4\github-mark\github-mark.svg" class="github"></a></li>
-            <li><a href="#" class = "aboutList">About me </a></li>
-            <li><a href="#" class = "contactList">Contact</a></li>  
+            <li><a href="#" id = "aboutList">About me </a></li>
+            <li><a href="#" id = "contactList">Contact</a></li>  
         </ul>
         <div class="dropdown">
             <img id = "btn" onclick="myFunction()" class="dropbtn" src="assets/dropdown.png"></img>
@@ -241,15 +242,18 @@
             </div>
         </div> 
     </nav>
+    </div>
 
     <script>
         $(window).scroll(function() {
             if (checkVisible($('nav'))) {
                 $('.dropbtn').css("opacity", "100");
                 $('.dropbtn').css("position", "static");
+                $('.dropdown-content').css("margin-top", "auto");
             } else {
                 $('.dropbtn').css("opacity", "0.3");
                 $('.dropbtn').css("position", "fixed");
+                $('.dropdown-content').css("margin-top", "35px");
             }
         });
         
@@ -266,7 +270,7 @@
     </script>
 
     <div class="container">
-            <h1>What is SQL injection? Definition, demonstration, and why you must know</h1>
+            <h1>What is SQL injection? Definition, demonstration, and why you should care</h1>
                 <p class="author"><br>Liam Whittaker | Mar 3rd | 5 minute read</p>
                 <br>
                 <img src="assets\sql-6060942_640.png" class="introimg">
@@ -368,12 +372,9 @@
                     
                 <p><q>Its biggest ever fine – £400,000 – to TalkTalk after taking into account a range of factors demonstrating the seriousness of the event. <a id = "reflink3" class = "rlink" href="#r3"><sup> [3]</sup></a></q></p><br>
 
-                <p><i>Ouch</i> this is what happens when a company fails to comply with basic security practises...</p><br>
+                <p><i>Ouch</i> this is what happens when a company fails to comply with basic security practises...</p>
 
-            <h2>What can cause it and how can we resolve it?</h2>
-            <p>...</p><br>
-
-            <h2>How can we test for it?</h2>
+            <h2><br>How can we test for it?</h2>
             <p>Lets use Portswigger's web-security academy vulnerability labs to learn how to test for SQL Injections, we will do a
                bit more of a complicated exercise compared to the examples I gave before.
             </p><br>
@@ -404,7 +405,7 @@
 
             <p><br>The first step in finding any low-level SQLi vulnerability is simply going into the query and inputting an apostrophe <code>'</code> or quotation marks. In reference to Stack Overflow user Sampson, J. (2012),
                 doing this would create: "ambiguity - the interpreter doesn't know where [the] string ends.<a id = "reflink4" class = "rlink" href="#r4"><sup> [4]</sup></a>" This results in a syntax error meaning we can inject things as
-                the input is considered <span class = keyword>unsanitized</span>. It also shows the user input can effect the syntax of the query, the string would now look more like this example:</p><br>
+                the input is considered <span class = keyword>unsanitized</span> and we can <span class = keyword>escape</span> the current context. It also shows the user input can effect the syntax of the query, the string would now look more like this example:</p><br>
 
                 <img src="assets\figure2.png" class="figure" style = "max-width: 50%;">
                 <figcaption>The interpreter now reading the incoming input as actual code after the SQL code input. (Source: Sampson, J. 2012 <a id = "reflink4" class = "rlink" href="#r4"><sup> [4]</sup></a>)</figcaption><br>
@@ -433,25 +434,64 @@
     
             <img src="assets\img8.png" class="img">
 
-            <p><br>Et voila! we sent the request to the application and it has now displayed the database version! Thank you for reading and congratulations on solving the lab.</p><br>
+            <p><br>Et voila! we sent the request to the application and it has now displayed the database version! Congratulations on solving the lab.</p><br>
+
+            <h2>What can cause it and how can we resolved/mitigated it?</h2>
+            <p> Let's talk more about why they happen, they happen because the SQL query treats the user input as actual code. This can happen for a variety of reasons
+                for example:</p><br>
+            <div class = "causesList">
+            <ul>
+                <li>Developers which are untrained or unaware of SQLi</li>
+                <li>Lack of security pentesting or code reviewing</li>
+                <li>No input validation or sanitization such as parameterized queries</li>
+                <li>Lack of compliance towards standardized frameworks such as OSI or OWASP</li>
+            </ul>
+            </div>
+            <p><br>One method that most mature databases use are <span class = keyword>Parameterized queries or prepared statements</span>,
+                Stack Overflow user Parker (2011)<a id = "reflink7" class = "rlink" href="#r7"><sup> [7]</sup></a> defines them as:</p><br>
+            <q>A means of pre-compiling a SQL statement so that all you need to supply are the "parameters"... that need to be inserted into the statement for it to be executed.
+               It's commonly used as a means of preventing SQL injection attacks.</q>
+
+            <p><br>Using a prepared statement would basically only execute the placeholders or "parameters" within the query, and it is a great way of seperating SQL code from user input.</p>
+            <p><br>The main route companies should always start with is standard compliance, not only would this mitigate an SQLi attack legally, as the ICO would see that
+               your company has implemented basic security features (unlike TalkTalk <i>*cough* *cough*</i>). But also in a more general way too as you would be more protected.
+            </p><br>
+            <p>In the explanation on <span class = keyword>escape characters</span><a href = "#reflink4"><sup> [4]</sup></a>
+               such as using apostrophe or our attack by using a comment tag in queries, the way we protect against that according to Silva, Barbosa and Bernardino (2020)<a id = "reflink8" class = "rlink" href="#r8"><sup> [8]</sup></a>
+               in standardized frameworks they may state that your application should:</p><br>
+            <q>
+               <ul style="margin-left: 1.2em;">
+                <li>Reject binary, escape and comment characters;</li>
+                <li>Verification of user privileges when connecting to database;</li>
+                <li>Strong password for system administrator;</li>
+                <li>Use secure hash algorithms;</li>
+                <li>Use least privilege rule.</li>
+            </ul>
+            </q><br>
+            <p>In turn using these rules would protect you against our basic SQli attack before, and it also gives developers standard insight on how to mitigate or prevent serious losses by
+               stopping the attack from going further. 
+            </p><br>
 
             <div class = references>
                 <h2>References:</h2>
-                <ol>
-                    <li style="margin-left: 0.8em;" id = "r1">Portswigger (2024) “What Is SQL Injection? Tutorial & Examples | Web Security Academy.” Portswigger.net,
+                <ol style="margin-left: 0.8em;">
+                    <li id = "r1">Portswigger (2024) “What Is SQL Injection? Tutorial & Examples | Web Security Academy.” Portswigger.net,
                         portswigger.net/web-security/sql-injection#what-is-sql-injection-sqli</li><br>
-                    <li style="margin-left: 0.8em;" id = "r2">EC-Council (2024) “What Is SQL Injection | SQL Injection Attack | SQL Injection Example.” Cybersecurity Exchange 
-                        www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-sql-injection-attack/. Accessed 7 Apr.</li><br>
-                    <li style="margin-left: 0.8em;" id = "r3">ICO (2016) “TalkTalk Cyber Attack – How the ICO’s Investigation Unfolded.” Ico.org.uk, 
+                    <li id = "r2">EC-Council (2024) “What Is SQL Injection | SQL Injection Attack | SQL Injection Example.” Cybersecurity Exchange 
+                        www.eccouncil.org/cybersecurity-exchange/ethical-hacking/what-is-sql-injection-attack/</li><br>
+                    <li id = "r3">ICO (2016) “TalkTalk Cyber Attack – How the ICO’s Investigation Unfolded.” Ico.org.uk, 
                         ico.org.uk/about-the-ico/media-centre/talktalk-cyber-attack-how-the-ico-investigation-unfolded/.</li><br>
-                    <li style="margin-left: 0.8em;" id = "r4">Sampson, J. (2012). What does it mean to escape a string? [online] Stack Overflow. Available at: 
-                        https://stackoverflow.com/a/10646166 [Accessed 11 Apr. 2024].</li><br>
-                    <li style="margin-left: 0.8em;" id = "r5">pentestmonkey.net. (2024). Oracle SQL Injection Cheat Sheet | pentestmonkey. [online] Available at: 
+                    <li id = "r4">Sampson, J. (2012). What does it mean to escape a string? [online] Stack Overflow. Available at: 
+                        https://stackoverflow.com/a/10646166</li><br>
+                    <li id = "r5">pentestmonkey.net. (2024). Oracle SQL Injection Cheat Sheet | pentestmonkey. [online] Available at: 
                         https://pentestmonkey.net/cheat-sheet/sql-injection/oracle-sql-injection-cheat-sheet.</li><br>
-                    <li style="margin-left: 0.8em;" id = "r6">Keesling, D., Kyte, T., McCormack, J., Adams, D., Agrawal, A., Anthony, T., Arora, V., Athraya, J., Austin, D., 
+                    <li id = "r6">Keesling, D., Kyte, T., McCormack, J., Adams, D., Agrawal, A., Anthony, T., Arora, V., Athraya, J., Austin, D., 
                         Baby, T., Barriere, V., Baer, H., Battula, S., Bayliss, N., Bednar, T., Beecher, V., Bolltoft, B., Bose, A., Brower, D. and Carpenter, L. (2024). 
-                        Data Dictionary and Dynamic Performance Views. [online] Oracle Help Center. 
-                        Available at: https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/data-dictionary-and-dynamic-performance-views.html#GUID-5A3DBE1B-1582-4452-B18A-7635EAE81075 [Accessed 11 Apr. 2024].</li><br>
+                        Data Dictionary and Dynamic Performance Views. [online] Oracle Help Center.
+                        Available at: https://docs.oracle.com/en/database/oracle/oracle-database/19/cncpt/data-dictionary-and-dynamic-performance-views.html#GUID-5A3DBE1B-1582-4452-B18A-7635EAE81075</li><br>
+                    <li id = "r7">Parker, J. (2011). php - What is parameterized query? [online] Stack Overflow. Available at: https://stackoverflow.com/a/4712113</li><br>
+                    <li id = "r8">Silva, R.F., Barbosa, R. and Bernardino, J. (2020). Intrusion Detection Systems for Mitigating SQL Injection Attacks. International Journal of Information Security and Privacy, 14(2), pp.20–40.
+                        doi:https://doi.org/10.4018/ijisp.2020040102.</li><br>
                 </ol>
             </div>
 
