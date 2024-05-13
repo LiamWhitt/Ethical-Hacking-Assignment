@@ -1,5 +1,5 @@
 * {
-    -webkit-tap-highlight-color: transparent; /* for removing the highlight */
+    -webkit-tap-highlight-color: transparent;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth;
@@ -38,6 +38,13 @@ dt {
     font-weight: bold;
 }
 
+.causesList{
+    font-size: 1.2em;
+    font-family: Poppins;
+    margin-left: 0.8em;
+    color: #1e1e1e;
+}
+
 dd {
     font-size: 1.2em;
     font-family: Poppins;
@@ -45,7 +52,7 @@ dd {
     font-style: italic;
 }
 
-ul li {
+.nav ul li {
     list-style: none;
     float: right;
     display: inline-block;
@@ -84,7 +91,7 @@ ul li {
 }
 
 
-ul li a {
+.nav ul li a {
     text-align: center;
     width: 100%;
     text-decoration: none;
@@ -169,7 +176,7 @@ q {
 }
 
 .references {
-    overflow: hidden;
+    word-wrap: break-word;
     padding: 25px;
     background-color: #3af3293f;
     display: flex;
