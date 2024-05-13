@@ -19,19 +19,19 @@
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico">
 
     <script>
-        function myFunction() {
-        document.getElementById("myDropdown").classList.toggle("show");
-        document.getElementById("btn").src = "assets/dropdownX.png";
-        if (!document.getElementById("myDropdown").classList.contains('show'))
+        function dropDownButton() { // create function for the dropDownButton on mobile
+        document.getElementById("myDropdown").classList.toggle("show"); // get the dropDown class and show it when the button is pressed or this event is run.
+        document.getElementById("btn").src = "assets/dropdownX.png"; // set the button image to be an X when the event is run.
+        if (!document.getElementById("myDropdown").classList.contains('show')) // if the element has returned show change image back to 3 lines default
             document.getElementById("btn").src = "assets/dropdown.png";
         }
-        window.onclick = function(event) {
+        window.onclick = function(event) { // when the button is pressed
             if (!event.target.matches('.dropbtn')) {
-                document.getElementById("btn").src = "assets/dropdown.png";
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
+                document.getElementById("btn").src = "assets/dropdown.png"; // change button to default
+                var dropdowns = document.getElementsByClassName("dropdown-content"); // create a variable for the amount of dropdown content
+                var i; // create a storage variable
             
-            for (i = 0; i < dropdowns.length; i++) {
+            for (i = 0; i < dropdowns.length; i++) { // create a for loop to create the amount of dropdown boxes needed
                 var openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) {
                     openDropdown.classList.remove('show');
@@ -197,7 +197,7 @@
                 color: black;
             }
 
-            p, dt, dd, code, ol {
+            p, q, dt, dd, code, ol, ul li a, .causesList {
                 font-size: 4vw;
                 font-family: Poppins;
                 color: #1e1e1e;
@@ -234,7 +234,7 @@
             <li><a href="#" id = "contactList">Contact</a></li>  
         </ul>
         <div class="dropdown">
-            <img id = "btn" onclick="myFunction()" class="dropbtn" src="assets/dropdown.png"></img>
+            <img id = "btn" onclick="dropDownButton()" class="dropbtn" src="assets/dropdown.png"></img>
             <div id="myDropdown" class="dropdown-content">
               <a style = "border-bottom: none;" href = "https://github.com/LiamWhitt">Github</a>
               <a style = "border-bottom: none;" href = "#">About me</a>
@@ -245,38 +245,38 @@
     </div>
 
     <script>
-        $(window).scroll(function() {
-            if (checkVisible($('nav'))) {
-                $('.dropbtn').css("opacity", "100");
+        $(window).scroll(function() {   // JQuery code: selects the window
+            if (checkVisible($('nav'))) { // checks if the navigation bar is visible using the code below
+                $('.dropbtn').css("opacity", "100"); // if it is the button should be in its regular state
                 $('.dropbtn').css("position", "static");
                 $('.dropdown-content').css("margin-top", "auto");
             } else {
-                $('.dropbtn').css("opacity", "0.3");
-                $('.dropbtn').css("position", "fixed");
-                $('.dropdown-content').css("margin-top", "35px");
+                $('.dropbtn').css("opacity", "0.3"); // if the navigation bar is not visible make the button transparent
+                $('.dropbtn').css("position", "fixed"); // the button should move when scrolling
+                $('.dropdown-content').css("margin-top", "35px"); // set the margin to be in-line with the dropdown content
             }
         });
         
-        function checkVisible( elm, eval ) {
-            eval = eval || "visible";
-            var vpH = $(window).height(),
-                st = $(window).scrollTop(), 
-                y = $(elm).offset().top,
-                elementHeight = $(elm).height();
+        function checkVisible( elm, eval ) { // create a function with the parameters elm (element), eval (evaluation)
+            eval = eval || "visible"; // set the default value to "visible" if a "eval" does not get passed (providing a default value)
+            var vpH = $(window).height(), // get the height of the viewport and store it
+                st = $(window).scrollTop(), // calculate the number of pixels that have been scrolled and store it
+                y = $(elm).offset().top, // calculate the distance between our elemenent (nav bar) and the top of the window
+                elementHeight = $(elm).height(); // store the element height
             
-            if (eval == "visible") return ((y < (vpH + st)) && (y > (st - elementHeight)));
-            if (eval == "above") return ((y < (vpH + st)));
+            if (eval == "visible") return ((y < (vpH + st)) && (y > (st - elementHeight))); // if eval returns visible: check if the top edge of the element is below the top of the viewport and if the top edge is above the bottom of the viewport.
+            if (eval == "above") return ((y < (vpH + st))); // check if the top edge of the element is less than viewport height + scroll distance, meaning the top edge is above the bottom of the viewport.
         }
     </script>
 
     <div class="container">
-            <h1>What is SQL injection? Definition, demonstration, and why you should care</h1>
+            <h1>What is SQL injection? Definition, demonstration, and why developers should care.</h1>
                 <p class="author"><br>Liam Whittaker | Mar 3rd | 5 minute read</p>
                 <br>
                 <img src="assets\sql-6060942_640.png" class="introimg">
 
-                <p><br>Whether you are aware of <span class="keyword">SQLi (SQL Injection)</span> or not, this blog post will go over everything you need to know. But before I delve deep into ‘SQL Injecting’
-                    and how it works, its impact, the potential causes, how it can be resolved etc, etc. I will need to explain what it actually is in the first place.
+                <p><br>Whether you are aware of <span class="keyword">SQLi (SQL Injection)</span> or not, this blog post will go over everything you need to know. But before I delve deep into 
+                    how it works, its impact, the potential causes, how it can be resolved etc, etc. I will need to explain what it actually is in the first place.
                 </p>
                 <br>
             <h2>What even is it?</h2>
@@ -292,7 +292,7 @@
                 <dd>- Injecting SQL code to gather data from a separate table and add it to the original query output.</dd><br>
             </dl> 
 
-            <p>I will explain how these three main vulnerabilities work but for a more general definition the creators of Burpe Suite A.K.A Portswigger (2024) define SQLi as:</p><br>
+            <p>For a more general definition the amazing creators of Burpe Suite A.K.A Portswigger (2024) define SQLi as:</p><br>
             
             <p><q>A web security vulnerability that allows an attacker to interfere with the queries that an application makes to its database. <a id = "reflink1" class = "rlink" href="#r2"><sup> [1]</sup></a></q></p><br>
 
@@ -303,31 +303,27 @@
             <p><code>https://good-rock-band-bad-website.co.uk/merch?category=apparel</code></p>
             </p><br>
 
-            <p>This URL contains all the clothing merchandise for your band.</p>
-
             <p>Unfortunately, they for some reason have their home-made website running off a raspberry PI in their grandparent’s basement, which happens to be incredibly insecure and
             the site makes this SQL query to retrieve the data:</p><br>
 
             <p><code>SELECT * FROM merch WHERE category = 'apparel' AND released = 1</code></p><br>
 
-            <p>It wants all the details <code>(*)</code> from the <code>merch</code> table, where the <code>category</code> is <code>apparel</code> and <code>released</code> = <code>1</code>
-            (true). We see that the site is using “released = 1” to only show released merchandise. However, what if we want the <i>unreleased</i> merchandise for the upcoming tour?
-            Since the site has such poor security practises and is completely open to SQLi we can add a comment tag (<code>--</code>) to the end of apparel:</p><br>
+            <p>It wants all the details <code>(*)</code> from the <code>merch</code> table, where the <code>category</code> is <code>apparel</code> and <code>released</code> = <code>1</code>. We see that the site is using “released = 1” to only show released merchandise. However, what if we want the <i>unreleased</i> merchandise for the upcoming tour?
+            Since the site has such poor security practises and is completely open to SQLi we can add a comment tag (<code>--</code>) to the end of apparel in the query:</p><br>
 
             <p><code>https://good-rock-band-bad-website.co.uk/merch?category=apparel’ --</code></p><br>
 
-            <p>Since the site takes the data from the request and appends it straight into the query it now looks like this:</p><br>
+            <p>New query:</p>
 
             <p><code>SELECT * FROM merch WHERE category = 'apparel’ --' AND released = 1</code></p><br>
 
-            <p>As it has appended a SQL comment tag it basically rendered the next part of code useless, thus removing the restriction so the site now shows the unreleased
+            <p id = "cheat-sheet">As it has appended a SQL comment tag it basically rendered the next part of code useless, thus removing the restriction so the site now shows the unreleased
             merchandise ready for the upcoming tour.</p><br>
-
-            <h3 id = "cheat-sheet">Subverting application logic:</h3>
-            <p>We will continue to use the SQL comment tag (<code>--</code>) as shown in the ‘Cheat Sheet’ and the last example but in a different scenario.</p><br>
 
             <span class = tip><b>TIP :</b> you can use the Portswigger (2024) “SQL Injection Cheat Sheet” where you can see a variety of different syntax’s you would use in an SQLi attack:<br>
                 <a href = "https://portswigger.net/web-security/sql-injection/cheat-sheet" style="color: rgb(0, 95, 95);">https://portswigger.net/web-security/sql-injection/cheat-sheet</a></span>
+
+            <h3>Subverting application logic:</h3>
 
             <br><p>Pretend that the non-existent “rock band” we saw earlier also has a login page to show your purchased tickets,
                this time it gives the check using the following query:</p><br>
@@ -337,7 +333,7 @@
             <p>The example shown above is the credential check for “Tyler”, however since the website was developed by a band member to save money
                (who also knows nothing about our secret SQLi trick), we can not only login as “Tyler” but also as anyone.</p><br>
 
-            <p>We can do this by adding a comment tag (<code>--</code>) at the end of our (or anyone’s) username to login to that account without the need of a password:</p><br>
+            <p>We can do this by adding a comment tag (<code>--</code>) at the end of the username in the query:</p><br>
 
             <p><code>SELECT * FROM users WHERE username = 'Tyler'--' AND password = ''</code></p><br>
 
@@ -362,9 +358,9 @@
                     https://portswigger.net/web-security/sql-injection/union-attacks</a></span><br>
 
             <h2>What impact does it have?</h2>
-                <p>SQLi can allow an attacker to gain access to unauthorized user data, they also may be able to change said data or even delete it.
-                   If this were to happen it could cost a company a lot of money not only financially but legally too, as ordinary people’s identities or money could also be stolen.
-                   This is due to SQL itself allowing the possibility of the output data to be chosen from the database. EC-Council (2024) states an example of this by saying:</p><br> 
+                <p>SQLi can allow an attacker to gain access to unauthorized user data, they also may be able to change said data or even delete it, this is due to SQL itself allowing the possibility
+                    of the output data to be chosen from the database. If this were to happen it could cost a company a lot of money not only financially but legally too, as ordinary people’s identities
+                    or money could also be stolen, this would affect reputation drastically. EC-Council (2024) states an example of this by saying:</p><br> 
 
                 <p><q>An attacker can use SQL Injection in a financial application to make some transactions void, change balances, or move money from the user’s account to another account.<a id = "reflink2" class = "rlink" href="#r2"><sup> [2]</sup></a></q></p><br>
                 
@@ -373,8 +369,9 @@
                 <p><q>Its biggest ever fine – £400,000 – to TalkTalk after taking into account a range of factors demonstrating the seriousness of the event. <a id = "reflink3" class = "rlink" href="#r3"><sup> [3]</sup></a></q></p><br>
 
                 <p><i>Ouch</i> this is what happens when a company fails to comply with basic security practises...</p>
+                <br>
 
-            <h2><br>How can we test for it?</h2>
+            <h2>How can we test for it?</h2>
             <p>Lets use Portswigger's web-security academy vulnerability labs to learn how to test for SQL Injections, we will do a
                bit more of a complicated exercise compared to the examples I gave before.
             </p><br>
@@ -386,9 +383,7 @@
 
             <img src="assets\img1.png" class="img">
 
-            <p><br>Since we want to get information from other tables we need to know how many <span class = keyword>columns</span> it has to make a valid request,
-                   and find one that can have <span class="keyword">text inputted into it.</span> this will help us inject what we need, which
-                   is to find out what the database type and version is.</p><br>
+            <p><br>Since we want to get information from other tables, we need to know how many columns it needs to make a valid request.</p><br>
 
             <p>First lets analyse the web page, we can determine that there are at least two columns as each item on the site has two entries; the title and description of the item.
                 Also if we look there seems that there are really only links to exploit, but before we click on one we should let Burp Suite intercept the request.</p><br>
@@ -403,7 +398,7 @@
 
             <img src="assets\img4.png" class="img">
 
-            <p><br>The first step in finding any low-level SQLi vulnerability is simply going into the query and inputting an apostrophe <code>'</code> or quotation marks. In reference to Stack Overflow user Sampson, J. (2012),
+            <p><br>To find any low-level SQLi vulnerability we can simply go into the query and input an apostrophe <code>'</code> or quotation marks. In reference to Stack Overflow user Sampson, J. (2012),
                 doing this would create: "ambiguity - the interpreter doesn't know where [the] string ends.<a id = "reflink4" class = "rlink" href="#r4"><sup> [4]</sup></a>" This results in a syntax error meaning we can inject things as
                 the input is considered <span class = keyword>unsanitized</span> and we can <span class = keyword>escape</span> the current context. It also shows the user input can effect the syntax of the query, the string would now look more like this example:</p><br>
 
@@ -425,7 +420,7 @@
             <img src="assets\img6.png" class="img">
 
             <p><br>Next, if we find which one we can input text into by replacing <code>NULL</code> with any string such as "'test'" (which in this case was the first column).
-               We now know which one to append our payload to, and we can clearly see that "test" has successfully worked.</p><br>
+               We now know which one to append our payload to as we see it worked.</p><br>
 
             <img src="assets\img7.png" class="img">
 
@@ -436,29 +431,32 @@
 
             <p><br>Et voila! we sent the request to the application and it has now displayed the database version! Congratulations on solving the lab.</p><br>
 
-            <h2>What can cause it and how can we resolved/mitigated it?</h2>
+            <h2>What can cause it and how can we resolve/mitigate it?</h2>
             <p> Let's talk more about why they happen, they happen because the SQL query treats the user input as actual code. This can happen for a variety of reasons
                 for example:</p><br>
             <div class = "causesList">
             <ul>
                 <li>Developers which are untrained or unaware of SQLi</li>
-                <li>Lack of security pentesting or code reviewing</li>
+                <li>Lack of security pen testing or code reviewing</li>
                 <li>No input validation or sanitization such as parameterized queries</li>
                 <li>Lack of compliance towards standardized frameworks such as OSI or OWASP</li>
             </ul>
             </div>
             <p><br>One method that most mature databases use are <span class = keyword>Parameterized queries or prepared statements</span>,
                 Stack Overflow user Parker (2011)<a id = "reflink7" class = "rlink" href="#r7"><sup> [7]</sup></a> defines them as:</p><br>
+
             <q>A means of pre-compiling a SQL statement so that all you need to supply are the "parameters"... that need to be inserted into the statement for it to be executed.
                It's commonly used as a means of preventing SQL injection attacks.</q>
 
-            <p><br>Using a prepared statement would basically only execute the placeholders or "parameters" within the query, and it is a great way of seperating SQL code from user input.</p>
-            <p><br>The main route companies should always start with is standard compliance, not only would this mitigate an SQLi attack legally, as the ICO would see that
-               your company has implemented basic security features (unlike TalkTalk <i>*cough* *cough*</i>). But also in a more general way too as you would be more protected.
+            <p><br>Using a prepared statement would basically only execute the placeholders or "parameters" within the query, and it is a great way of separating SQL code from user input.</p>
+
+            <p><br>The main route companies should always start with is standard compliance, not only would this mitigate legal issues, as the ICO would see that
+               your company has implemented basic security features (unlike TalkTalk <i>*cough* *cough*</i>). But also in a more general way too as you would
+               avoid the aforementioned causes.
             </p><br>
-            <p>In the explanation on <span class = keyword>escape characters</span><a href = "#reflink4"><sup> [4]</sup></a>
-               such as using apostrophe or our attack by using a comment tag in queries, the way we protect against that according to Silva, Barbosa and Bernardino (2020)<a id = "reflink8" class = "rlink" href="#r8"><sup> [8]</sup></a>
-               in standardized frameworks they may state that your application should:</p><br>
+            <p>For the explanation on <span class = keyword>escape characters,</span><a href = "#reflink4"><sup> [4]</sup></a>
+               the way we protect against that according to Silva, Barbosa and Bernardino (2020)<a id = "reflink8" class = "rlink" href="#r8"><sup> [8]</sup></a>
+               is to use standardized frameworks, which they state can include:</p><br>
             <q>
                <ul style="margin-left: 1.2em;">
                 <li>Reject binary, escape and comment characters;</li>
